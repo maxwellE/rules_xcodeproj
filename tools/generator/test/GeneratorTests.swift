@@ -18,6 +18,10 @@ final class GeneratorTests: XCTestCase {
             invalidTargetMerges: ["Y": ["Z"]],
             extraFiles: []
         )
+        let xccurrentversions: [XCCurrentVersion] = [
+            .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),
+            .init(container: "Xe/P.xcdatamodeld", version: "M1.xcdatamodel"),
+        ]
 
         let pbxProj = Fixtures.pbxProj()
         let pbxProject = pbxProj.rootObject!
@@ -134,6 +138,7 @@ final class GeneratorTests: XCTestCase {
             let pbxProj: PBXProj
             let targets: [TargetID: Target]
             let extraFiles: Set<FilePath>
+            let xccurrentversions: [XCCurrentVersion]
             let filePathResolver: FilePathResolver
         }
 
@@ -142,7 +147,9 @@ final class GeneratorTests: XCTestCase {
             in pbxProj: PBXProj,
             targets: [TargetID: Target],
             extraFiles: Set<FilePath>,
-            filePathResolver: FilePathResolver
+            xccurrentversions: [XCCurrentVersion],
+            filePathResolver: FilePathResolver,
+            logger: Logger
         ) -> (
             files: [FilePath: File],
             rootElements: [PBXFileElement]
@@ -151,6 +158,7 @@ final class GeneratorTests: XCTestCase {
                 pbxProj: pbxProj,
                 targets: targets,
                 extraFiles: extraFiles,
+                xccurrentversions: xccurrentversions,
                 filePathResolver: filePathResolver
             ))
             return (files, rootElements)
@@ -160,6 +168,7 @@ final class GeneratorTests: XCTestCase {
             pbxProj: pbxProj,
             targets: mergedTargets,
             extraFiles: project.extraFiles,
+            xccurrentversions: xccurrentversions,
             filePathResolver: filePathResolver
         )]
 
@@ -410,6 +419,7 @@ final class GeneratorTests: XCTestCase {
 
         try generator.generate(
             project: project,
+            xccurrentversions: xccurrentversions,
             projectRootDirectory: projectRootDirectory,
             externalDirectory: externalDirectory,
             generatedDirectory: generatedDirectory,

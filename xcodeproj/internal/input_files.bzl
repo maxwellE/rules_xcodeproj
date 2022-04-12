@@ -135,6 +135,10 @@ def _collect(
             `target`'s `non_arc_srcs`-like attributes.
         *   `resources`: A `depset` of `FilePath`s that are inputs to `target`'s
             `resources`-like and `structured_resources`-like attributes.
+        *   `xccurrentversions`: A `depset` of `.xccurrentversion` `File`s that
+            are in `resources`.
+        *   `contains_generated_files`: A `bool` indicating whether the target
+            contains generated files.
         *   `generated`: A `depset` of generated `File`s that are inputs to
             `target` or its transitive dependencies.
         *   `extra_files`: A `depset` of `File`s that are inputs to `target`
@@ -150,6 +154,7 @@ def _collect(
     pch = []
     resources = []
     unowned_resources = []
+    xccurrentversions = []
     generated = []
     extra_files = []
 
@@ -171,11 +176,13 @@ def _collect(
                 # assigning to the existing variable
                 pch.append(file)
             elif attrs_info.resources.get(attr):
-                fp = file_path(file)
-                if owner:
-                    resources.append((owner, fp))
+                if (file.basename == ".xccurrentversion" and
+                    file.dirname.endswith(".xcdatamodeld")):
+                    xccurrentversions.append(file)
+                elif owner:
+                    resources.append((owner, file_path(file)))
                 else:
-                    unowned_resources.append(fp)
+                    unowned_resources.append(file_path(file))
             elif attr in attrs_info.structured_resources:
                 fp = _folder_resource_file_path(
                     target = target,
@@ -280,6 +287,13 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
                 )
             ],
         ),
+        xccurrentversions = depset(
+            xccurrentversions,
+            transitive = [
+                info.inputs.xccurrentversions
+                for _, info in transitive_infos
+            ],
+        ),
         contains_generated_files = bool(generated),
         generated = depset(
             generated,
@@ -347,6 +361,12 @@ def _merge(*, attrs_info, transitive_infos):
                     attr = attr,
                     info = info,
                 )
+            ],
+        ),
+        xccurrentversions = depset(
+            transitive = [
+                info.inputs.xccurrentversions
+                for _, info in transitive_infos
             ],
         ),
         generated = depset(

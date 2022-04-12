@@ -30,6 +30,10 @@ enum Fixtures {
         ]
     )
 
+    static let xccurrentversions: [XCCurrentVersion] = [
+        .init(container: "r1/E.xcdatamodeld", version: "K2.xcdatamodel"),
+    ]
+
     static let targets: [TargetID: Target] = [
         "A 1": Target.mock(
             packageBinDir: "bazel-out/a1b2c/bin/A 1",
@@ -189,6 +193,7 @@ enum Fixtures {
             inputs: .init(
                 resources: [
                     "r1/X.txt",
+                    "r1/E.xcdatamodeld/K2.xcdatamodel/contents",
                     "r1/Assets.xcassets/Contents.json",
                     "r1/Assets.xcassets/image/Contents.json",
                     "r1/Assets.xcassets/image/image.png",
@@ -581,6 +586,24 @@ enum Fixtures {
         elements["r1/Assets.xcassets/image/image.png"] =
             elements["r1/Assets.xcassets"]!
 
+        // r1/E.xcdatamodeld
+
+        let kModel = PBXFileReference(
+            sourceTree: .group,
+            lastKnownFileType: "wrapper.xcdatamodel",
+            path: "K2.xcdatamodel"
+        )
+        let eVersionGroup = XCVersionGroup(
+            currentVersion: kModel,
+            path: "E.xcdatamodeld",
+            sourceTree: .group,
+            versionGroupType: "wrapper.xcdatamodel",
+            children: [kModel]
+        )
+        elements["r1/E.xcdatamodeld"] = eVersionGroup
+        elements["r1/E.xcdatamodeld/K2.xcdatamodel"] = eVersionGroup
+        elements["r1/E.xcdatamodeld/K2.xcdatamodel/contents"] = eVersionGroup
+
         // r1/nested
 
         elements[.project("r1/nested", isFolder: true)] = PBXFileReference(
@@ -604,6 +627,7 @@ enum Fixtures {
                 elements[.project("r1/dir", isFolder: true)]!,
                 elements[.project("r1/nested", isFolder: true)]!,
                 elements["r1/Assets.xcassets"]!,
+                elements["r1/E.xcdatamodeld"]!,
                 elements["r1/X.txt"]!,
             ],
             sourceTree: .group,
@@ -633,6 +657,8 @@ enum Fixtures {
             pbxProj.add(object: element)
             if let variantGroup = element as? PBXVariantGroup {
                 variantGroup.children.forEach { pbxProj.add(object: $0) }
+            } else if let xcVersionGroup = element as? XCVersionGroup {
+                xcVersionGroup.children.forEach { pbxProj.add(object: $0) }
             }
         }
 
@@ -651,6 +677,8 @@ enum Fixtures {
                 files[filePath] = .reference(reference)
             } else if let variantGroup = element as? PBXVariantGroup {
                 files[filePath] = .variantGroup(variantGroup)
+            } else if let xcVersionGroup = element as? XCVersionGroup {
+                files[filePath] = .xcVersionGroup(xcVersionGroup)
             }
         }
 
@@ -1001,6 +1029,9 @@ bazel-out/a/c.a
                             file: elements[.project("r1/dir", isFolder: true)]!
                         ),
                         PBXBuildFile(
+                            file: elements["r1/E.xcdatamodeld"]!
+                        ),
+                        PBXBuildFile(
                             file: elements[
                                 .project("r1/nested", isFolder: true)
                             ]!
@@ -1122,7 +1153,7 @@ ln -sf "$BUILD_DIR/bazel-out" gen_dir
 cd "$BUILD_DIR"
 ln -sfn "$PROJECT_DIR" SRCROOT
 ln -sfn "\#(
-    filePathResolver.resolve(.external(""), useScriptVariables: true)
+    filePathResolver.resolve(.external(""), variableMode: .script)
 )" external
 
 """#,

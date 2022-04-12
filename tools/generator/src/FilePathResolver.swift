@@ -1,6 +1,12 @@
 import PathKit
 
 struct FilePathResolver: Equatable {
+    enum VariableMode {
+        case buildSetting
+        case script
+        case none
+    }
+
     let externalDirectory: Path
     let generatedDirectory: Path
     let internalDirectoryName: String
@@ -26,13 +32,16 @@ struct FilePathResolver: Equatable {
         _ filePath: FilePath,
         useBuildDir: Bool = true,
         useOriginalGeneratedFiles: Bool = false,
-        useScriptVariables: Bool = false
+        variableMode: VariableMode = .buildSetting
     ) -> Path {
         let projectDir: Path
-        if useScriptVariables {
-            projectDir = "$PROJECT_DIR"
-        } else {
+        switch variableMode {
+        case .buildSetting:
             projectDir = "$(PROJECT_DIR)"
+        case .script:
+            projectDir = "$PROJECT_DIR"
+        case .none:
+            projectDir = ""
         }
 
         switch filePath.type {
@@ -55,18 +64,24 @@ struct FilePathResolver: Equatable {
                 }
             } else if useBuildDir {
                 let buildDir: Path
-                if useScriptVariables {
-                    buildDir = "$BUILD_DIR"
-                } else {
+                switch variableMode {
+                case .buildSetting:
                     buildDir = "$(BUILD_DIR)"
+                case .script:
+                    buildDir = "$BUILD_DIR"
+                case .none:
+                    buildDir = ""
                 }
                 return buildDir + "bazel-out" + filePath.path
             } else {
                 let projectFilePath: Path
-                if useScriptVariables {
-                    projectFilePath = "$PROJECT_FILE_PATH"
-                } else {
+                switch variableMode {
+                case .buildSetting:
                     projectFilePath = "$(PROJECT_FILE_PATH)"
+                case .script:
+                    projectFilePath = "$PROJECT_FILE_PATH"
+                case .none:
+                    projectFilePath = ""
                 }
                 return projectFilePath + internalDirectoryName + "gen_dir" +
                     filePath.path

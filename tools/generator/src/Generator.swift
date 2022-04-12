@@ -35,6 +35,7 @@ class Generator {
     /// Generates an Xcode project for a given `Project`.
     func generate(
         project: Project,
+        xccurrentversions: [XCCurrentVersion],
         projectRootDirectory: Path,
         externalDirectory: Path,
         generatedDirectory: Path,
@@ -86,7 +87,9 @@ Was unable to merge "\(srcTarget.label) \
             pbxProj,
             targets,
             project.extraFiles,
-            filePathResolver
+            xccurrentversions,
+            filePathResolver,
+            logger
         )
         let (products, productsGroup) = environment.createProducts(
             pbxProj,

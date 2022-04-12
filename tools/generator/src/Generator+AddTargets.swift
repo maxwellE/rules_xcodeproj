@@ -142,7 +142,7 @@ ln -sf "$BUILD_DIR/bazel-out" gen_dir
 cd "$BUILD_DIR"
 ln -sfn "$PROJECT_DIR" SRCROOT
 ln -sfn "\#(
-    filePathResolver.resolve(.external(""), useScriptVariables: true)
+    filePathResolver.resolve(.external(""), variableMode: .script)
 )" external
 
 """#,
@@ -250,7 +250,7 @@ cd "\#(filePathResolver.generatedDirectory)"
 rsync \
   --files-from "\#(
     filePathResolver
-        .resolve(.internal(rsyncFileListPath), useScriptVariables: true)
+        .resolve(.internal(rsyncFileListPath), variableMode: .script)
         .string
 )" \
   --chmod=u+w \

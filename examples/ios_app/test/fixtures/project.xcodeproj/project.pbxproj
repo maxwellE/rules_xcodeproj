@@ -52,6 +52,7 @@
 		9194957C11E639A47F6F9B3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3C4594509740C3A3C0835CC /* Assets.xcassets */; };
 		A20F9915BC31FA63002163E7 /* ExampleObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B3DE95D17EDB4EEF586E35 /* ExampleObjcTests.m */; };
 		A3ADDDD00B8798D8C12477BC /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0D71BEB41FFFA97C5AAF35CE /* Utils.bundle */; };
+		A57C8D9E2594C26ABB39104A /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 7F286E0ADC62AF7C5E37A9AC /* Model.xcdatamodeld */; };
 		AE2C4E59A2F6A848808F8249 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D699DE3520D61FDC19A909EF /* ExampleApp.swift */; };
 		C6CB5A5FD193CCABCF030A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E848F62EC3EA16CB8AADB58 /* Assets.xcassets */; };
 		D318A1B20B60B1F886937BD6 /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF54836943E040ACDFCB9FD /* ExampleFramework.framework */; };
@@ -245,6 +246,7 @@
 		1971CA49644537C181D152F9 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		1F24BE1ED66E73DF86D94C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2668B72F031658C7424A69C7 /* Greeting.swift.stencil */ = {isa = PBXFileReference; path = Greeting.swift.stencil; sourceTree = "<group>"; };
+		2E37CBB2D478B38AFA3AD697 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		332DA7D905FE78395F8B49AB /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E1ED3F12607BB25B281B60 /* Utils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.swift.modulemap; sourceTree = "<group>"; };
 		3ACA8C2DDE68CE9047B965F6 /* ExampleResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,6 +258,7 @@
 		60D06A659C114CE403EAD6BF /* ExternalResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExternalResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		68EB39D379DB575C1992811C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7126B3B29F2941E2615E8B45 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		72308D2D8DC0FA924558EC0A /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		7458A79A895427FF2B5EF451 /* Answers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answers.h; sourceTree = "<group>"; };
 		772995ACCC05420BD8295F13 /* libCoreUtilsObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCoreUtilsObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EC6E4D4A0027B9BAE7E7354 /* CoreUtilsObjC.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.swift.modulemap; sourceTree = "<group>"; };
@@ -430,6 +433,7 @@
 				D699DE3520D61FDC19A909EF /* ExampleApp.swift */,
 				D1F93F75DA88677B3EB84499 /* Info.plist */,
 				145CCA829262D9783A1B847F /* Localizable.strings */,
+				7F286E0ADC62AF7C5E37A9AC /* Model.xcdatamodeld */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -937,6 +941,7 @@
 				C6CB5A5FD193CCABCF030A1E /* Assets.xcassets in Resources */,
 				EC88DC4B02D420A9A1624A7D /* ExampleResources.bundle in Resources */,
 				0F959A1FFBE84ABD123A3308 /* Localizable.strings in Resources */,
+				A57C8D9E2594C26ABB39104A /* Model.xcdatamodeld in Resources */,
 				31A46C94AAC7DB9BE3E89E4B /* nested in Resources */,
 				7DAED6E1B30628461B9AC852 /* PreviewAssets.xcassets in Resources */,
 				03CDFE00832A6AB6DBC242FE /* Utils.bundle in Resources */,
@@ -1936,6 +1941,20 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7F286E0ADC62AF7C5E37A9AC /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2E37CBB2D478B38AFA3AD697 /* Model.xcdatamodel */,
+				72308D2D8DC0FA924558EC0A /* Model2.xcdatamodel */,
+			);
+			currentVersion = 72308D2D8DC0FA924558EC0A /* Model2.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 90B40B411875CA87718F15D6 /* Project object */;
 }

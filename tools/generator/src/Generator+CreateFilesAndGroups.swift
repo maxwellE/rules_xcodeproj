@@ -1,11 +1,13 @@
+import Foundation
 import PathKit
 import XcodeProj
 
-/// Wrapper for files (`PBXFileReference` and `PBXVariantGroup`), adding
-/// additional associated data.
+/// Wrapper for files (`PBXFileReference`, `PBXVariantGroup`, and
+/// `XCVersionGroup`), adding additional associated data.
 enum File: Equatable {
     case reference(PBXFileReference?, content: String)
     case variantGroup(PBXVariantGroup)
+    case xcVersionGroup(XCVersionGroup)
 }
 
 extension File {
@@ -24,6 +26,8 @@ extension File {
         case .reference(let reference, _):
             return reference
         case .variantGroup(let group):
+            return group
+        case .xcVersionGroup(let group):
             return group
         }
     }
@@ -52,7 +56,9 @@ extension Generator {
         in pbxProj: PBXProj,
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
-        filePathResolver: FilePathResolver
+        xccurrentversions: [XCCurrentVersion],
+        filePathResolver: FilePathResolver,
+        logger: Logger
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement]
@@ -70,8 +76,6 @@ extension Generator {
                 return (element, false)
             }
 
-            // TODO: Handle CoreData models
-
             if filePath.path.isLocalizedContainer {
                 // Localized container (e.g. /path/to/en.lproj)
                 // We don't add it directly; an element will get added once the
@@ -80,6 +84,17 @@ extension Generator {
             } else if filePath.path.parent().isLocalizedContainer {
                 // Localized file (e.g. /path/to/en.lproj/foo.png)
                 return addLocalizedFile(filePath: filePath)
+            } else if filePath.path.isCoreDataContainer {
+                let group = XCVersionGroup(
+                    path: pathComponent,
+                    sourceTree: .group,
+                    versionGroupType: filePath.path.versionGroupType
+                )
+                pbxProj.add(object: group)
+
+                elements[filePath] = group
+
+                return (group, true)
             } else if !(isLeaf || filePath.path.isFolderTypeFileSource) {
                 let group = createGroup(
                     filePath: filePath,
@@ -308,6 +323,7 @@ extension Generator {
                 lastElement = createInternalGroup()
             }
 
+            var coreDataContainer: XCVersionGroup?
             let components = fullFilePath.path.components
             for (offset, component) in components.enumerated() {
                 filePath = filePath + component
@@ -324,10 +340,21 @@ extension Generator {
                     if isNew {
                         if let group = lastElement as? PBXGroup {
                             // This will be the case for all non-root elements
+
                             group.addChild(element)
                         } else if !isSpecialGroup(element) {
                             rootElements.append(element)
                         }
+
+                        if let coreDataContainer = coreDataContainer {
+                            // When a model file is copied, we should grab
+                            // the group instead
+                            elements[filePath] = coreDataContainer
+                        }
+                    }
+
+                    if let element = element as? XCVersionGroup {
+                        coreDataContainer = element
                     }
 
                     lastElement = element
@@ -338,12 +365,22 @@ extension Generator {
                 }
             }
 
-            if fullFilePath != filePath {
+            if let coreDataContainer = coreDataContainer {
+                // When a model file is copied, we should grab
+                // the group instead
+                elements[fullFilePath] = coreDataContainer
+            } else if fullFilePath != filePath {
                 // We need to add extra entries for file-like folders, to allow
                 // easy copying of resources
                 elements[fullFilePath] = lastElement
             }
         }
+
+        try setXCCurrentVersions(
+            elements: elements,
+            xccurrentversions: xccurrentversions,
+            logger: logger
+        )
 
         var files: [FilePath: File] = [:]
         for (filePath, element) in elements {
@@ -351,6 +388,8 @@ extension Generator {
                 files[filePath] = .reference(reference)
             } else if let variantGroup = element as? PBXVariantGroup {
                 files[filePath] = .variantGroup(variantGroup)
+            } else if let xcVersionGroup = element as? XCVersionGroup {
+                files[filePath] = .xcVersionGroup(xcVersionGroup)
             }
         }
 
@@ -447,6 +486,45 @@ extension Generator {
         pbxProj.rootObject!.knownRegions = knownRegions.sorted() + ["Base"]
 
         return (files, rootElements)
+    }
+
+    private static func setXCCurrentVersions(
+        elements: [FilePath: PBXFileElement],
+        xccurrentversions: [XCCurrentVersion],
+        logger: Logger
+    ) throws {
+        for xccurrentversion in xccurrentversions {
+            guard let element = elements[xccurrentversion.container] else {
+                throw PreconditionError(message: """
+"\(xccurrentversion.container.path)" `XCVersionGroup` not found in `elements`
+""")
+            }
+
+            guard let container = element as? XCVersionGroup else {
+                throw PreconditionError(message: """
+"\(xccurrentversion.container.path)" isn't an `XCVersionGroup`
+""")
+            }
+
+            guard
+                let versionChild = container.children
+                    .first(where: { $0.path == xccurrentversion.version })
+            else {
+                logger.logWarning("""
+"\(xccurrentversion.container.path)" doesn't have \
+"\(xccurrentversion.version)" as a child; not setting `currentVersion`
+""")
+                continue
+            }
+
+            guard let versionFile = versionChild as? PBXFileReference else {
+                throw PreconditionError(message: """
+"\(versionChild.path!)" is not a `PBXFileReference`
+""")
+            }
+
+            container.currentVersion = versionFile
+        }
     }
 }
 

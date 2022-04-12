@@ -12,9 +12,13 @@ extension Generator {
             let arguments = try parseArguments(CommandLine.arguments)
             let rootDirs = try readRootDirectories(path: arguments.rootDirsPath)
             let project = try readProject(path: arguments.specPath)
+            let xccurrentversions = try readXCCurrentVersions(
+                path: arguments.xccurrentversionsPath
+            )
 
             try Generator(logger: logger).generate(
                 project: project,
+                xccurrentversions: xccurrentversions,
                 projectRootDirectory: arguments.projectRootDirectory,
                 externalDirectory: rootDirs.externalDirectory,
                 generatedDirectory: rootDirs.generatedDirectory,
@@ -31,21 +35,22 @@ extension Generator {
     struct Arguments {
         let rootDirsPath: Path
         let specPath: Path
+        let xccurrentversionsPath: Path
         let outputPath: Path
         let workspaceOutputPath: Path
         let projectRootDirectory: Path
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard CommandLine.arguments.count == 5 else {
+        guard CommandLine.arguments.count == 6 else {
             throw UsageError(message: """
 Usage: \(CommandLine.arguments[0]) <path/to/root_dirs_file> \
-<path/to/project.json> <path/to/output/project.xcodeproj> \
-<workspace/relative/output/path>
+<path/to/spec.json> <path/to/xccurrentversions.json> \
+<path/to/output/project.xcodeproj> <workspace/relative/output/path>
 """)
         }
 
-        let workspaceOutput = CommandLine.arguments[4]
+        let workspaceOutput = CommandLine.arguments[5]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
 
         // Generate a relative path to the project root
@@ -58,7 +63,8 @@ Usage: \(CommandLine.arguments[0]) <path/to/root_dirs_file> \
         return Arguments(
             rootDirsPath: Path(CommandLine.arguments[1]),
             specPath: Path(CommandLine.arguments[2]),
-            outputPath: Path(CommandLine.arguments[3]),
+            xccurrentversionsPath: Path(CommandLine.arguments[3]),
+            outputPath: Path(CommandLine.arguments[4]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot)
         )
@@ -93,6 +99,21 @@ directory, and one for the generated files directory.
 
         do {
             return try decoder.decode(Project.self, from: try path.read())
+        } catch let error as DecodingError {
+            // Return a more detailed error message
+            throw PreconditionError(message: error.message)
+        }
+    }
+
+    static func readXCCurrentVersions(path: Path) throws -> [XCCurrentVersion] {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+        do {
+            return try decoder.decode(
+                [XCCurrentVersion].self,
+                from: try path.read()
+            )
         } catch let error as DecodingError {
             // Return a more detailed error message
             throw PreconditionError(message: error.message)

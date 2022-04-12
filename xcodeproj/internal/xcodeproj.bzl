@@ -102,31 +102,31 @@ def _write_root_dirs(*, ctx):
         outputs = [output],
         command = """\
 if [ -n "{external_dir_override}" ]; then
-  echo "{external_dir_override}" >> "{out_full}"
+  echo "{external_dir_override}" >> "{output}"
 else
   # `readlink -f` doesn't exist on macOS, so use perl instead
   external_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{external_full}";)"
   # Strip `/private` prefix from paths (as it breaks breakpoints)
   external_full_path="${{external_full_path#/private}}"
   # Trim the suffix from the paths
-  echo "${{external_full_path%/{external_full}}}/external" >> "{out_full}"
+  echo "${{external_full_path%/{external_full}}}/external" >> "{output}"
 fi
 if [ -n "{generated_dir_override}" ]; then
-  echo "{generated_dir_override}" >> "{out_full}"
+  echo "{generated_dir_override}" >> "{output}"
 else
   # `readlink -f` doesn't exist on macOS, so use perl instead
   generated_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{generated_full}";)"
   # Strip `/private` prefix from paths (as it breaks breakpoints)
   generated_full_path="${{generated_full_path#/private}}"
   # Trim the suffix from the paths
-  echo "${{generated_full_path%/{generated_full}}}/bazel-out" >> "{out_full}"
+  echo "${{generated_full_path%/{generated_full}}}/bazel-out" >> "{output}"
 fi
 """.format(
             external_full = an_external_input.path,
             external_dir_override = ctx.attr.external_dir_override,
             generated_full = ctx.bin_dir.path,
             generated_dir_override = ctx.attr.generated_dir_override,
-            out_full = output.path,
+            output = output.path,
         ),
         mnemonic = "CalculateXcodeProjRootDirs",
         # This has to run locally
@@ -139,7 +139,43 @@ fi
 
     return output
 
-def _write_xcodeproj(*, ctx, project_name, root_dirs_file, spec_file):
+def _write_xccurrentversions(*, ctx, xccurrentversion_files):
+    containers_file = ctx.actions.declare_file(
+        "{}_xccurrentversion_containers".format(ctx.attr.name),
+    )
+    ctx.actions.write(
+        containers_file,
+        "".join([
+            json.encode(file_path_to_dto(file_path(file, path = file.dirname))) + "\n"
+            for file in xccurrentversion_files
+        ]),
+    )
+
+    files_list = ctx.actions.args()
+    files_list.use_param_file("%s", use_always = True)
+    files_list.set_param_file_format("multiline")
+    files_list.add_all(xccurrentversion_files)
+
+    output = ctx.actions.declare_file(
+        "{}_xccurrentversions".format(ctx.attr.name),
+    )
+    ctx.actions.run(
+        arguments = [containers_file.path, files_list, output.path],
+        executable = ctx.executable._xccurrentversions_parser,
+        inputs = [containers_file] + xccurrentversion_files,
+        outputs = [output],
+        mnemonic = "CalculateXcodeProjXCCurrentVersions",
+    )
+
+    return output
+
+def _write_xcodeproj(
+        *,
+        ctx,
+        project_name,
+        root_dirs_file,
+        spec_file,
+        xccurrentversions_file):
     xcodeproj = ctx.actions.declare_directory(
         "{}.xcodeproj".format(ctx.attr.name),
     )
@@ -154,6 +190,7 @@ def _write_xcodeproj(*, ctx, project_name, root_dirs_file, spec_file):
     args = ctx.actions.args()
     args.add(root_dirs_file.path)
     args.add(spec_file.path)
+    args.add(xccurrentversions_file.path)
     args.add(xcodeproj.path)
     args.add(install_path)
 
@@ -161,7 +198,7 @@ def _write_xcodeproj(*, ctx, project_name, root_dirs_file, spec_file):
         executable = ctx.executable._generator,
         mnemonic = "GenerateXcodeProj",
         arguments = [args],
-        inputs = [root_dirs_file, spec_file],
+        inputs = [root_dirs_file, spec_file, xccurrentversions_file],
         outputs = [xcodeproj],
     )
 
@@ -198,18 +235,23 @@ def _xcodeproj_impl(ctx):
         transitive_infos = [(None, info) for info in infos],
     )
 
+    root_dirs_file = _write_root_dirs(ctx = ctx)
     spec_file = _write_json_spec(
         ctx = ctx,
         project_name = project_name,
         inputs = inputs,
         infos = infos,
     )
-    root_dirs_file = _write_root_dirs(ctx = ctx)
+    xccurrentversions_file = _write_xccurrentversions(
+        ctx = ctx,
+        xccurrentversion_files = inputs.xccurrentversions.to_list(),
+    )
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
         project_name = project_name,
         root_dirs_file = root_dirs_file,
         spec_file = spec_file,
+        xccurrentversions_file = xccurrentversions_file,
     )
     installer = _write_installer(
         ctx = ctx,
@@ -262,7 +304,7 @@ def make_xcodeproj_rule(*, transition = None):
         "_generator": attr.label(
             cfg = "exec",
             # TODO: Use universal generator when done debugging
-            default = Label("//tools/generator:generator"),
+            default = Label("//tools/generator"),
             executable = True,
         ),
         "_install_path": attr.label(
@@ -273,6 +315,11 @@ def make_xcodeproj_rule(*, transition = None):
             allow_single_file = True,
             executable = False,
             default = Label("//xcodeproj/internal:installer.template.sh"),
+        ),
+        "_xccurrentversions_parser": attr.label(
+            cfg = "exec",
+            default = Label("//tools/xccurrentversions_parser"),
+            executable = True,
         ),
     }
 
