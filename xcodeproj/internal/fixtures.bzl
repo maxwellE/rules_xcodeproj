@@ -8,6 +8,7 @@ load(":xcodeproj.bzl", "make_xcodeproj_rule", "xcodeproj")
 def _fixtures_transition_impl(_settings, _attr):
     """Rule transition that standardizes command-line options for fixtures."""
     return {
+        "//command_line_option:compilation_mode": "dbg",
         "//command_line_option:cpu": "darwin_x86_64",
         "//command_line_option:ios_minimum_os": "14.1",
         "//command_line_option:macos_cpus": "x86_64",
@@ -20,6 +21,7 @@ fixtures_transition = transition(
     implementation = _fixtures_transition_impl,
     inputs = [],
     outputs = [
+        "//command_line_option:compilation_mode",
         "//command_line_option:cpu",
         "//command_line_option:ios_minimum_os",
         "//command_line_option:macos_cpus",

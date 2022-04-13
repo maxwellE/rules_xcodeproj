@@ -23,6 +23,8 @@ build:workflows --disk_cache=
 # Show detailed errors for test failures
 test --test_output=errors --test_summary=detailed
 
+build --compilation_mode dbg
+
 # Fix Xcode 13.3 runtime failures on macOS 12.2 and lower
 # Until https://github.com/bazelbuild/rules_swift/issues/794 is fixed, if this
 # changes we need to bump our --remote_instance_name's
