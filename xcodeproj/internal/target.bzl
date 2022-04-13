@@ -529,6 +529,10 @@ The xcodeproj rule requires {} rules to have a single library dep. {} has {}.\
         ctx.var.get("apple.experimental.tree_artifact_outputs", "").lower() in
         ("true", "yes", "1")
     )
+    if not tree_artifact_enabled:
+        # TODO: Unzip ipa instead, but warn that it's slower
+        fail("Build with Bazel requires --define=apple.experimental.tree_artifact_outputs=1")
+
     props = _process_top_level_properties(
         target_name = ctx.rule.attr.name,
         # The common case is to have a `bundle_info`, so this check prevents

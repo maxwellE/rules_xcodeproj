@@ -58,10 +58,14 @@ def _write_json_spec(*, ctx, project_name, inputs, infos):
 "build_settings":{{\
 "ALWAYS_SEARCH_USER_PATHS":false,\
 "BAZEL_PATH":"{bazel_path}",\
+"CC":"$(PROJECT_FILE_PATH)/rules_xcodeproj/cc_stub.py",\
 "CLANG_ENABLE_OBJC_ARC":true,\
 "CLANG_MODULES_AUTOLINK":false,\
 "COPY_PHASE_STRIP":false,\
+"LD":"$(PROJECT_FILE_PATH)/rules_xcodeproj/ld-stub.sh",\
+"LIBTOOL":"$(PROJECT_FILE_PATH)/rules_xcodeproj/libtool-stub.sh",\
 "ONLY_ACTIVE_ARCH":true,\
+"SWIFT_EXEC":"$(PROJECT_FILE_PATH)/rules_xcodeproj/swiftc_stub.py",\
 "USE_HEADERMAP":false,\
 "VALIDATE_WORKSPACE":false\
 }},\

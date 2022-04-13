@@ -23,7 +23,10 @@ build:workflows --disk_cache=
 # Show detailed errors for test failures
 test --test_output=errors --test_summary=detailed
 
+# Debug config required settings
 build --compilation_mode dbg
+build --define=apple.experimental.tree_artifact_outputs=1
+build --features=oso_prefix_is_pwd
 
 # Fix Xcode 13.3 runtime failures on macOS 12.2 and lower
 # Until https://github.com/bazelbuild/rules_swift/issues/794 is fixed, if this

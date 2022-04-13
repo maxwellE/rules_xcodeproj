@@ -1,0 +1,5 @@
+# Set `CWD` to `$SRCROOT` to so relative paths in binaries work
+platform settings -w "/Users/brentley/Developer/rules_xcodeproj/examples/ios_app"
+
+# "Undo" `-debug-prefix-map`
+settings append target.source-map ./ "/Users/brentley/Developer/rules_xcodeproj/examples/ios_app"

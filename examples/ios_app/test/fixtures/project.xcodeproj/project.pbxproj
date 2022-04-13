@@ -7,60 +7,35 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		3064A34776444DE49627998E /* Bazel Generated Files */ = {
+		3064A34776444DE49627998E /* Bazel Build */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 9EA7153333762DEA3558208C /* Build configuration list for PBXAggregateTarget "Bazel Generated Files" */;
+			buildConfigurationList = 9EA7153333762DEA3558208C /* Build configuration list for PBXAggregateTarget "Bazel Build" */;
 			buildPhases = (
-				8B6377F4DA6FAE3ED76C177A /* Generate Files */,
-				64D3406EB908D4BD044C581E /* Copy Files */,
+				8B6377F4DA6FAE3ED76C177A /* Build */,
+				64D3406EB908D4BD044C581E /* Copy Generated Files */,
 				C977250D6EB972BF2FF38593 /* Fix Modulemaps */,
 				700DDA896776846733B25577 /* Fix Info.plists */,
 			);
 			dependencies = (
-				1B345DF509A5588973BB937D /* PBXTargetDependency */,
 			);
-			name = "Bazel Generated Files";
-			productName = "Bazel Generated Files";
-		};
-		4C83CDF1E6003ECA397737DA /* Setup */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 7A993C65A3954B906466DAE9 /* Build configuration list for PBXAggregateTarget "Setup" */;
-			buildPhases = (
-				AC0029B6E74C676CF1887304 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = Setup;
-			productName = Setup;
+			name = "Bazel Build";
+			productName = "Bazel Build";
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		03CDFE00832A6AB6DBC242FE /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0D71BEB41FFFA97C5AAF35CE /* Utils.bundle */; };
-		0F959A1FFBE84ABD123A3308 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 145CCA829262D9783A1B847F /* Localizable.strings */; };
 		29796EAB3AFB4F393E120401 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD5A69CC7A6E820FCB0BDF0 /* ContentView.swift */; };
-		31A46C94AAC7DB9BE3E89E4B /* nested in Resources */ = {isa = PBXBuildFile; fileRef = 999DBB36F96D952774C90966 /* nested */; };
-		32DE63399B62963DEEAD7C1B /* nested in Resources */ = {isa = PBXBuildFile; fileRef = C941463D9750CBCE73E0FA81 /* nested */; };
-		4D047FAA2EA01785CB400859 /* ExternalResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 60D06A659C114CE403EAD6BF /* ExternalResources.bundle */; };
 		5A49B1D4C59BE2C861DAB532 /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = A728BC96D2EE56D3A20F5D75 /* Foo.m */; };
 		5CD57837C530676B7378BBE7 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCE1CD271709A66363D778C /* TestingUtils.swift */; };
-		5D0CD57FD7A90A93F7D98FED /* nested in Resources */ = {isa = PBXBuildFile; fileRef = 0D405A0225F82F8E821A1A89 /* nested */; };
-		7C7E582DC265E2E3205A3E89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89CDB7756652C04CE3307460 /* Assets.xcassets */; };
-		7DAED6E1B30628461B9AC852 /* PreviewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F331B89287AC5CF95CBE242 /* PreviewAssets.xcassets */; };
 		855819BC320CBF015145F5A0 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE58C589847257693979C11 /* ExampleTests.swift */; };
 		85B5A68B8EC0B82E556702F5 /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B582794DF84A93AA718FB7A0 /* ExampleUITestsLaunchTests.swift */; };
 		8F3A3C507C4C7B3764C1C6DF /* Answers.m in Sources */ = {isa = PBXBuildFile; fileRef = AD316B4515635DE6DE64F1C1 /* Answers.m */; };
-		9194957C11E639A47F6F9B3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3C4594509740C3A3C0835CC /* Assets.xcassets */; };
 		A20F9915BC31FA63002163E7 /* ExampleObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B3DE95D17EDB4EEF586E35 /* ExampleObjcTests.m */; };
 		A3ADDDD00B8798D8C12477BC /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0D71BEB41FFFA97C5AAF35CE /* Utils.bundle */; };
 		AE2C4E59A2F6A848808F8249 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D699DE3520D61FDC19A909EF /* ExampleApp.swift */; };
-		C6CB5A5FD193CCABCF030A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E848F62EC3EA16CB8AADB58 /* Assets.xcassets */; };
 		D318A1B20B60B1F886937BD6 /* ExampleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF54836943E040ACDFCB9FD /* ExampleFramework.framework */; };
 		D33E63DEA2F545E4238A1DF8 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A7C1EE8BAE7058EFC5B0C /* ExampleUITests.swift */; };
 		DB28C4EBC63A24E7071390F7 /* ExternalFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB838B5673B2D4DA9E2E52F0 /* ExternalFramework.framework */; };
-		EC88DC4B02D420A9A1624A7D /* ExampleResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3ACA8C2DDE68CE9047B965F6 /* ExampleResources.bundle */; };
-		EC97E6D4F708D600A5D99414 /* ExternalFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB838B5673B2D4DA9E2E52F0 /* ExternalFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FDC6B89B7169F2FE54FDD83C /* ExampleResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3ACA8C2DDE68CE9047B965F6 /* ExampleResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,13 +67,6 @@
 			remoteGlobalIDString = 3064A34776444DE49627998E;
 			remoteInfo = "Bazel Generated Files";
 		};
-		15400836A743F9AC2A0E4C5F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9782FF51889CEA3AB3A4FF47;
-			remoteInfo = ExampleResources;
-		};
 		1675381729F1B5E6B84FECCB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
@@ -112,13 +80,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3064A34776444DE49627998E;
 			remoteInfo = "Bazel Generated Files";
-		};
-		1BAA0BC5AA1CBCF8600437AB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9782FF51889CEA3AB3A4FF47;
-			remoteInfo = ExampleResources;
 		};
 		2221FA2FB6E417367EA947F0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -141,26 +102,19 @@
 			remoteGlobalIDString = EAB95A4512529D4CB8BE5D4E;
 			remoteInfo = Example;
 		};
-		3993462F5254457CDA557859 /* PBXContainerItemProxy */ = {
+		539F59C52800A57200F5FBE2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
-			remoteInfo = Setup;
+			remoteGlobalIDString = 3064A34776444DE49627998E;
+			remoteInfo = "Bazel Build";
 		};
-		6063D017FF0BD630301C7ACD /* PBXContainerItemProxy */ = {
+		539F59CB2800A58100F5FBE2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
-			remoteInfo = Setup;
-		};
-		6CCFBB6244E6F79BBAE14283 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A92585AB652F9F937D1D19A2;
-			remoteInfo = ExternalResources;
+			remoteGlobalIDString = 3064A34776444DE49627998E;
+			remoteInfo = "Bazel Build";
 		};
 		707845B675E64A1ADA52B218 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -190,27 +144,6 @@
 			remoteGlobalIDString = 3064A34776444DE49627998E;
 			remoteInfo = "Bazel Generated Files";
 		};
-		B5BCC52B1C8F3D238D44B3DE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
-			remoteInfo = Setup;
-		};
-		CD1DB8EBFA62947054E6732D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
-			remoteInfo = Setup;
-		};
-		E275EBB8F2B713CCBEE713C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4C83CDF1E6003ECA397737DA;
-			remoteInfo = Setup;
-		};
 		E58F4A1E1F92E1E2F5570ED4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 90B40B411875CA87718F15D6 /* Project object */;
@@ -219,20 +152,6 @@
 			remoteInfo = Utils;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		65F81CB84CE29F4CC4DAE79C /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				EC97E6D4F708D600A5D99414 /* ExternalFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0A3D8CEF43CF91B1E874B99B /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
@@ -244,11 +163,10 @@
 		163F2C8DEF5CD811826145FD /* ExampleObjcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleObjcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F28FA542D26969D99D932C5 /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
 		2089F161F005F94A7715179F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		2668B72F031658C7424A69C7 /* Greeting.swift.stencil */ = {isa = PBXFileReference; path = Greeting.swift.stencil; sourceTree = "<group>"; };
+		2668B72F031658C7424A69C7 /* Greeting.swift.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = Greeting.swift.stencil; sourceTree = "<group>"; };
 		27EC4A09230A23D6E3FCF9A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		31E23ABADEE3E00DE618D6E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		332DA7D905FE78395F8B49AB /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3ACA8C2DDE68CE9047B965F6 /* ExampleResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6A7C1EE8BAE7058EFC5B0C /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		3FC1732AF7F1647C2CCBBCB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4B4FA9C70425835BED3D18FF /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTestingUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,7 +174,6 @@
 		59857C336D9E5B6105B95850 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5C2EF0755376A4732F5170B8 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5FC699D9C0C4FE223AAEA1E5 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		60D06A659C114CE403EAD6BF /* ExternalResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExternalResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		64179CB2BEC1B454E719159D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		68EB39D379DB575C1992811C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7126B3B29F2941E2615E8B45 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -276,7 +193,7 @@
 		AD316B4515635DE6DE64F1C1 /* Answers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Answers.m; sourceTree = "<group>"; };
 		B582794DF84A93AA718FB7A0 /* ExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B6CBC98397C1FF02025C5E22 /* CoreUtilsObjC.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.swift.modulemap; sourceTree = "<group>"; };
-		BB5454138C3DB7B7F7E1308A /* Answer.swift.stencil */ = {isa = PBXFileReference; path = Answer.swift.stencil; sourceTree = "<group>"; };
+		BB5454138C3DB7B7F7E1308A /* Answer.swift.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = Answer.swift.stencil; sourceTree = "<group>"; };
 		BB838B5673B2D4DA9E2E52F0 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExternalFramework.framework; sourceTree = "<group>"; };
 		C2288FA66726CD35CFB04516 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C4594509740C3A3C0835CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -379,10 +296,8 @@
 			children = (
 				C5E39D6F9D4DAE2C1137ABB0 /* Example.app */,
 				163F2C8DEF5CD811826145FD /* ExampleObjcTests.xctest */,
-				3ACA8C2DDE68CE9047B965F6 /* ExampleResources.bundle */,
 				332DA7D905FE78395F8B49AB /* ExampleTests.xctest */,
 				C2288FA66726CD35CFB04516 /* ExampleUITests.xctest */,
-				60D06A659C114CE403EAD6BF /* ExternalResources.bundle */,
 				772995ACCC05420BD8295F13 /* libCoreUtilsObjC.a */,
 				4B4FA9C70425835BED3D18FF /* libTestingUtils.a */,
 				96457EE4FDB089F9B6CA30D8 /* libUtils.a */,
@@ -665,7 +580,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				6ACE625F4F25204D4C86FD12 /* PBXTargetDependency */,
+				539F59CC2800A58100F5FBE2 /* PBXTargetDependency */,
 				B44F3488B8861B13B6BE0333 /* PBXTargetDependency */,
 			);
 			name = Utils;
@@ -685,7 +600,6 @@
 			dependencies = (
 				2C3EF0A78A1C6D3ED61F8B20 /* PBXTargetDependency */,
 				8090BAEEB7C7D714E55D865C /* PBXTargetDependency */,
-				B9E875CC0E0CE82EAE0D68E4 /* PBXTargetDependency */,
 			);
 			name = ExampleUITests.__internal__.__test_bundle;
 			productName = ExampleUITests;
@@ -709,22 +623,6 @@
 			productReference = 4B4FA9C70425835BED3D18FF /* libTestingUtils.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9782FF51889CEA3AB3A4FF47 /* ExampleResources */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C5D2396907D2B75287CE745A /* Build configuration list for PBXNativeTarget "ExampleResources" */;
-			buildPhases = (
-				3C796D8A1665920F8B264E06 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				360BF3C47D5AB0E0FDCC3C7C /* PBXTargetDependency */,
-			);
-			name = ExampleResources;
-			productName = ExampleResources;
-			productReference = 3ACA8C2DDE68CE9047B965F6 /* ExampleResources.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
 		9F709B925871CD3FCBF43106 /* ExampleObjcTests.__internal__.__test_bundle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE32CA7AA6309AA3A570F94A /* Build configuration list for PBXNativeTarget "ExampleObjcTests.__internal__.__test_bundle" */;
@@ -745,22 +643,6 @@
 			productReference = 163F2C8DEF5CD811826145FD /* ExampleObjcTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A92585AB652F9F937D1D19A2 /* ExternalResources */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A70F09B21AC42CA6749E2934 /* Build configuration list for PBXNativeTarget "ExternalResources" */;
-			buildPhases = (
-				F6DE06F92A872AC85F6761AA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B41237FB14D060AB32765EA3 /* PBXTargetDependency */,
-			);
-			name = ExternalResources;
-			productName = ExternalResources;
-			productReference = 60D06A659C114CE403EAD6BF /* ExternalResources.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
 		E5FC08BFA53D3AF04406D2BB /* ExampleTests.__internal__.__test_bundle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC225E2F7B139CBF04D43ED2 /* Build configuration list for PBXNativeTarget "ExampleTests.__internal__.__test_bundle" */;
@@ -773,7 +655,6 @@
 			dependencies = (
 				C418EED9BCE57CCDB9B6CA97 /* PBXTargetDependency */,
 				DE2A9C64E8E8EC51BD29FC22 /* PBXTargetDependency */,
-				5A17EE48ED9C2FDFE08F9F23 /* PBXTargetDependency */,
 				1468909917912BD7D7544911 /* PBXTargetDependency */,
 				50E5474DA5A85C108744AB54 /* PBXTargetDependency */,
 			);
@@ -786,16 +667,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19C1A3DAF723B9973DBE381B /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
+				539F59CE2800C24400F5FBE2 /* Copy Output */,
 				6315F36A6873172964A42F18 /* Sources */,
 				BCF96D9A72AA5C1F337495CB /* Frameworks */,
-				F80D8ED4894A573985608B3E /* Resources */,
-				65F81CB84CE29F4CC4DAE79C /* Embed Frameworks */,
+				539F59CF2800D40700F5FBE2 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				39159660DA50973079657E41 /* PBXTargetDependency */,
-				D35231A24586953193D89AE3 /* PBXTargetDependency */,
 				7E14CF57C8FA9BF9043A9A53 /* PBXTargetDependency */,
 			);
 			name = Example;
@@ -812,7 +692,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D6D03542DD975303D63600AD /* PBXTargetDependency */,
+				539F59C62800A57200F5FBE2 /* PBXTargetDependency */,
 			);
 			name = CoreUtilsObjC;
 			productName = CoreUtilsObjC;
@@ -832,9 +712,6 @@
 					3064A34776444DE49627998E = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
-					4C83CDF1E6003ECA397737DA = {
-						CreatedOnToolsVersion = 13.2.1;
-					};
 					682FCD8AED9E378997DB28CB = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
@@ -848,18 +725,10 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 					};
-					9782FF51889CEA3AB3A4FF47 = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 1320;
-					};
 					9F709B925871CD3FCBF43106 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 1320;
 						TestTargetID = EAB95A4512529D4CB8BE5D4E;
-					};
-					A92585AB652F9F937D1D19A2 = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 1320;
 					};
 					E5FC08BFA53D3AF04406D2BB = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -890,15 +759,12 @@
 			projectDirPath = ../..;
 			projectRoot = "";
 			targets = (
-				4C83CDF1E6003ECA397737DA /* Setup */,
-				3064A34776444DE49627998E /* Bazel Generated Files */,
+				3064A34776444DE49627998E /* Bazel Build */,
 				F735F4A9CFBBEB3F09580C52 /* CoreUtilsObjC */,
 				EAB95A4512529D4CB8BE5D4E /* Example */,
 				9F709B925871CD3FCBF43106 /* ExampleObjcTests.__internal__.__test_bundle */,
-				9782FF51889CEA3AB3A4FF47 /* ExampleResources */,
 				E5FC08BFA53D3AF04406D2BB /* ExampleTests.__internal__.__test_bundle */,
 				78E254055CF3D5252C84D79D /* ExampleUITests.__internal__.__test_bundle */,
-				A92585AB652F9F937D1D19A2 /* ExternalResources */,
 				8B1A49AD77FC1690CB9AE556 /* TestingUtils */,
 				682FCD8AED9E378997DB28CB /* Utils */,
 			);
@@ -910,16 +776,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D047FAA2EA01785CB400859 /* ExternalResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3C796D8A1665920F8B264E06 /* Resources */ = {
+		539F59CF2800D40700F5FBE2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9194957C11E639A47F6F9B3C /* Assets.xcassets in Resources */,
-				5D0CD57FD7A90A93F7D98FED /* nested in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,7 +790,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDC6B89B7169F2FE54FDD83C /* ExampleResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -936,28 +798,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3ADDDD00B8798D8C12477BC /* Utils.bundle in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F6DE06F92A872AC85F6761AA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7C7E582DC265E2E3205A3E89 /* Assets.xcassets in Resources */,
-				32DE63399B62963DEEAD7C1B /* nested in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F80D8ED4894A573985608B3E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C6CB5A5FD193CCABCF030A1E /* Assets.xcassets in Resources */,
-				EC88DC4B02D420A9A1624A7D /* ExampleResources.bundle in Resources */,
-				0F959A1FFBE84ABD123A3308 /* Localizable.strings in Resources */,
-				31A46C94AAC7DB9BE3E89E4B /* nested in Resources */,
-				7DAED6E1B30628461B9AC852 /* PreviewAssets.xcassets in Resources */,
-				03CDFE00832A6AB6DBC242FE /* Utils.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -981,8 +821,9 @@
 			shellScript = "cp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		64D3406EB908D4BD044C581E /* Copy Files */ = {
+		539F59CE2800C24400F5FBE2 /* Copy Output */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -991,7 +832,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Files";
+			name = "Copy Output";
 			outputFileListPaths = (
 				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.copied.xcfilelist",
 			);
@@ -999,10 +840,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\ncd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_FILE_PATH/rules_xcodeproj/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
+			shellScript = "rsync \\\n  --copy-links \\\n  --recursive \\\n  --times \\\n  --delete \\\n  --chmod=u+w \\\n  -v \\\n  \"$PROJECT_DIR/bazel-out/applebin_ios-ios_sim_arm64-dbg-ST-eeab8ca40dab/bin/Example/Example.app\" \\\n  \"$TARGET_BUILD_DIR\"\n";
 			showEnvVarsInLog = 0;
 		};
-		700DDA896776846733B25577 /* Fix Info.plists */ = {
+		64D3406EB908D4BD044C581E /* Copy Generated Files */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1012,9 +853,30 @@
 			);
 			inputPaths = (
 			);
-			name = "Fix Info.plists";
+			name = "Copy Generated Files";
 			outputFileListPaths = (
 				"$(PROJECT_FILE_PATH)/rules_xcodeproj/infoplists.fixed.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\ncd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_DIR/test/fixtures/project.xcodeproj/rules_xcodeproj/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
+			showEnvVarsInLog = 0;
+		};
+		700DDA896776846733B25577 /* Fix Info.plists */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/infoplists.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "Fix Info.plists";
+			outputFileListPaths = (
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.xcfilelist",
 			);
 			outputPaths = (
 			);
@@ -1023,7 +885,7 @@
 			shellScript = "set -eu\n\nwhile IFS= read -r input; do\n  output=\"${input%.plist}.xcode.plist\"\n  cp \"$input\" \"$output\"\n  plutil -remove UIDeviceFamily \"$output\" || true\ndone < \"$SCRIPT_INPUT_FILE_LIST_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8B6377F4DA6FAE3ED76C177A /* Generate Files */ = {
+		8B6377F4DA6FAE3ED76C177A /* Build */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1031,31 +893,15 @@
 			);
 			inputPaths = (
 			);
-			name = "Generate Files";
+			name = Build;
 			outputFileListPaths = (
-				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.xcfilelist",
+				"$(PROJECT_DIR)/test/fixtures/project.xcodeproj/rules_xcodeproj/generated.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf \"$PROJECT_DIR/bazel-out\"\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  ${BAZEL_PATH} \\\n  build \\\n  --output_groups=generated_inputs \\\n  //test/fixtures:fixture\n";
-			showEnvVarsInLog = 0;
-		};
-		AC0029B6E74C676CF1887304 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -eu\n\ncd \"$PROJECT_FILE_PATH/rules_xcodeproj\"\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf gen_dir\n\nln -sf \"$BUILD_DIR/bazel-out\" gen_dir\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-ios_app/external\" external\n\n# Create parent directories of generated files, so the project navigator works\n# better faster\n\nmkdir -p bazel-out\ncd bazel-out\n\nsed 's|\\/[^\\/]*$||' \\\n  \"$PROJECT_FILE_PATH/rules_xcodeproj/generated.rsynclist\" \\\n  | uniq \\\n  | while IFS= read -r dir\ndo\n  mkdir -p \"$dir\"\ndone\n";
-			showEnvVarsInLog = 0;
+			shellScript = "set -eu\n\nset -x\n\nls -la\n\ncd \"$PROJECT_FILE_PATH/rules_xcodeproj\"\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf gen_dir\n\nln -sf \"$BUILD_DIR/bazel-out\" gen_dir\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-ios_app/external\" external\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf \"$PROJECT_DIR/bazel-out\"\n\ncd \"$PROJECT_DIR\"\n\nls -la\n\n# The pre-build scheme action isn't run while indexing, so we have to build everything\nif [ \"$ACTION\" == \"indexbuild\" ]; then\ncat <<EOF > \"$PROJECT_FILE_PATH/rules_xcodeproj/bazel_build_targets\"\n//test/fixtures:fixture\n//Example\n//ExampleObjcTests\n//ExampleTests\n//ExampleUITests\nEOF\nfi\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  ${BAZEL_PATH} \\\n  build \\\n  --config=cache \\\n  --output_groups=+generated_inputs \\\n  -c dbg \\\n  --define=apple.experimental.tree_artifact_outputs=1 \\\n  --features=oso_prefix_is_pwd \\\n  --target_pattern_file=\"$PROJECT_FILE_PATH/rules_xcodeproj/bazel_build_targets\"\n  \nls -la\n";
 		};
 		C977250D6EB972BF2FF38593 /* Fix Modulemaps */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1148,12 +994,6 @@
 			target = 8B1A49AD77FC1690CB9AE556 /* TestingUtils */;
 			targetProxy = 7ADFECF50878167CF6071A82 /* PBXContainerItemProxy */;
 		};
-		1B345DF509A5588973BB937D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Setup;
-			target = 4C83CDF1E6003ECA397737DA /* Setup */;
-			targetProxy = 3993462F5254457CDA557859 /* PBXContainerItemProxy */;
-		};
 		21627D3581B6ADD9906D176D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Example;
@@ -1163,19 +1003,13 @@
 		2C3EF0A78A1C6D3ED61F8B20 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bazel Generated Files";
-			target = 3064A34776444DE49627998E /* Bazel Generated Files */;
+			target = 3064A34776444DE49627998E /* Bazel Build */;
 			targetProxy = 9EA5AB932A9708D1A7667DFA /* PBXContainerItemProxy */;
-		};
-		360BF3C47D5AB0E0FDCC3C7C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Setup;
-			target = 4C83CDF1E6003ECA397737DA /* Setup */;
-			targetProxy = CD1DB8EBFA62947054E6732D /* PBXContainerItemProxy */;
 		};
 		39159660DA50973079657E41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bazel Generated Files";
-			target = 3064A34776444DE49627998E /* Bazel Generated Files */;
+			target = 3064A34776444DE49627998E /* Bazel Build */;
 			targetProxy = 2221FA2FB6E417367EA947F0 /* PBXContainerItemProxy */;
 		};
 		50E5474DA5A85C108744AB54 /* PBXTargetDependency */ = {
@@ -1184,23 +1018,21 @@
 			target = 682FCD8AED9E378997DB28CB /* Utils */;
 			targetProxy = 1675381729F1B5E6B84FECCB /* PBXContainerItemProxy */;
 		};
+		539F59C62800A57200F5FBE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3064A34776444DE49627998E /* Bazel Build */;
+			targetProxy = 539F59C52800A57200F5FBE2 /* PBXContainerItemProxy */;
+		};
+		539F59CC2800A58100F5FBE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3064A34776444DE49627998E /* Bazel Build */;
+			targetProxy = 539F59CB2800A58100F5FBE2 /* PBXContainerItemProxy */;
+		};
 		545A036FD772496B7255F60D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Utils;
 			target = 682FCD8AED9E378997DB28CB /* Utils */;
 			targetProxy = 300AFE98821F10E2A85D648E /* PBXContainerItemProxy */;
-		};
-		5A17EE48ED9C2FDFE08F9F23 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ExampleResources;
-			target = 9782FF51889CEA3AB3A4FF47 /* ExampleResources */;
-			targetProxy = 1BAA0BC5AA1CBCF8600437AB /* PBXContainerItemProxy */;
-		};
-		6ACE625F4F25204D4C86FD12 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Setup;
-			target = 4C83CDF1E6003ECA397737DA /* Setup */;
-			targetProxy = B5BCC52B1C8F3D238D44B3DE /* PBXContainerItemProxy */;
 		};
 		7E14CF57C8FA9BF9043A9A53 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1217,14 +1049,8 @@
 		AE1DF113574D91C3702AEFDA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bazel Generated Files";
-			target = 3064A34776444DE49627998E /* Bazel Generated Files */;
+			target = 3064A34776444DE49627998E /* Bazel Build */;
 			targetProxy = 17EEC780925E742F008C20DE /* PBXContainerItemProxy */;
-		};
-		B41237FB14D060AB32765EA3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Setup;
-			target = 4C83CDF1E6003ECA397737DA /* Setup */;
-			targetProxy = 6063D017FF0BD630301C7ACD /* PBXContainerItemProxy */;
 		};
 		B44F3488B8861B13B6BE0333 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1238,35 +1064,17 @@
 			target = 8B1A49AD77FC1690CB9AE556 /* TestingUtils */;
 			targetProxy = 9C3E0BB14012EE3F0AFD2DD3 /* PBXContainerItemProxy */;
 		};
-		B9E875CC0E0CE82EAE0D68E4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ExternalResources;
-			target = A92585AB652F9F937D1D19A2 /* ExternalResources */;
-			targetProxy = 6CCFBB6244E6F79BBAE14283 /* PBXContainerItemProxy */;
-		};
 		BA07896B61B9027F0533AC69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bazel Generated Files";
-			target = 3064A34776444DE49627998E /* Bazel Generated Files */;
+			target = 3064A34776444DE49627998E /* Bazel Build */;
 			targetProxy = 05F71069DEEAD35A2A289575 /* PBXContainerItemProxy */;
 		};
 		C418EED9BCE57CCDB9B6CA97 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Bazel Generated Files";
-			target = 3064A34776444DE49627998E /* Bazel Generated Files */;
+			target = 3064A34776444DE49627998E /* Bazel Build */;
 			targetProxy = 121C0F1755D40EF9E74DDC51 /* PBXContainerItemProxy */;
-		};
-		D35231A24586953193D89AE3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ExampleResources;
-			target = 9782FF51889CEA3AB3A4FF47 /* ExampleResources */;
-			targetProxy = 15400836A743F9AC2A0E4C5F /* PBXContainerItemProxy */;
-		};
-		D6D03542DD975303D63600AD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Setup;
-			target = 4C83CDF1E6003ECA397737DA /* Setup */;
-			targetProxy = E275EBB8F2B713CCBEE713C3 /* PBXContainerItemProxy */;
 		};
 		DE2A9C64E8E8EC51BD29FC22 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1356,21 +1164,6 @@
 					"$(PROJECT_DIR)",
 					"$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d3e756bfe7fd/bin",
 				);
-			};
-			name = Debug;
-		};
-		1755ABDE7582A22B92E343E9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d3e756bfe7fd/bin/ExampleResources";
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.resources;
-				PRODUCT_NAME = ExampleResources;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
-				TARGET_NAME = ExampleResources;
 			};
 			name = Debug;
 		};
@@ -1516,21 +1309,6 @@
 			};
 			name = Debug;
 		};
-		2B83713371B115E872241431 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d3e756bfe7fd/bin/external/examples_ios_app_external";
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.resources.external;
-				PRODUCT_NAME = ExternalResources;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
-				TARGET_NAME = ExternalResources;
-			};
-			name = Debug;
-		};
 		6494BAE58154BF84E3AF60D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1592,28 +1370,23 @@
 			};
 			name = Debug;
 		};
-		70E18BE128A25A1F96CAB0FE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
-				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
-				INDEX_FORCE_SCRIPT_EXECUTION = YES;
-				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
-				SUPPORTS_MACCATALYST = YES;
-				TARGET_NAME = Setup;
-			};
-			name = Debug;
-		};
 		7C935235ACC6252AE6F5B6FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BAZEL_PATH = bazel;
+				CC = "$(PROJECT_FILE_PATH)/rules_xcodeproj/cc_stub.py";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_MODULES_AUTOLINK = NO;
+				CODE_SIGNING_ALLOWED = NO;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DONT_GENERATE_INFOPLIST_FILE = YES;
+				LD = "$(PROJECT_FILE_PATH)/rules_xcodeproj/ld-stub.sh";
+				LIBTOOL = "$(PROJECT_FILE_PATH)/rules_xcodeproj/libtool-stub.sh";
 				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_EXEC = "$(PROJECT_FILE_PATH)/rules_xcodeproj/swiftc_stub.py";
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
@@ -1699,7 +1472,7 @@
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
 				SUPPORTS_MACCATALYST = YES;
-				TARGET_NAME = GenerateBazelFiles;
+				TARGET_NAME = BazelBuild;
 			};
 			name = Debug;
 		};
@@ -1893,14 +1666,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		7A993C65A3954B906466DAE9 /* Build configuration list for PBXAggregateTarget "Setup" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				70E18BE128A25A1F96CAB0FE /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		80BD425FBB172AF87565539B /* Build configuration list for PBXProject "project" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1925,18 +1690,10 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		9EA7153333762DEA3558208C /* Build configuration list for PBXAggregateTarget "Bazel Generated Files" */ = {
+		9EA7153333762DEA3558208C /* Build configuration list for PBXAggregateTarget "Bazel Build" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ACE65DF71AEBC3D1DAF7EF52 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		A70F09B21AC42CA6749E2934 /* Build configuration list for PBXNativeTarget "ExternalResources" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2B83713371B115E872241431 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1945,14 +1702,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				235020F26966A0B7CA3238B5 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		C5D2396907D2B75287CE745A /* Build configuration list for PBXNativeTarget "ExampleResources" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1755ABDE7582A22B92E343E9 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
