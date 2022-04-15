@@ -6,6 +6,7 @@ load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":files.bzl", "file_path", "file_path_to_dto")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
+load(":output_files.bzl", "output_files")
 load(":providers.bzl", "XcodeProjInfo", "XcodeProjOutputInfo")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 
@@ -209,6 +210,9 @@ def _xcodeproj_impl(ctx):
         attrs_info = None,
         transitive_infos = [(None, info) for info in infos],
     )
+    outputs = output_files.merge(
+        transitive_infos = [(None, info) for info in infos],
+    )
     pre_generate_files = (ctx.attr.pre_generate_files and
                           inputs.generated.to_list())
 
@@ -240,6 +244,11 @@ def _xcodeproj_impl(ctx):
         ),
         OutputGroupInfo(
             generated_inputs = inputs.generated,
+            **output_files.to_output_groups_fields(
+                ctx = ctx,
+                outputs = outputs,
+                toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+            )
         ),
         XcodeProjOutputInfo(
             installer = installer,
@@ -269,6 +278,10 @@ def make_xcodeproj_rule(*, transition = None):
             mandatory = True,
             allow_empty = False,
             aspects = [xcodeproj_aspect],
+        ),
+        "toplevel_cache_buster": attr.label_list(
+            allow_empty = True,
+            allow_files = True,
         ),
         "_external_file_marker": attr.label(
             allow_single_file = True,
@@ -310,7 +323,18 @@ _xcodeproj = make_xcodeproj_rule()
 def xcodeproj(*, xcodeproj_rule = _xcodeproj, **kwargs):
     testonly = kwargs.pop("testonly", True)
 
+    project = kwargs.get("project_name", kwargs.get("name"))
+
+    # We control an input file to force downloading of top-level outputs,
+    # without having them be declared as the exact top level outputs. This makes
+    # the BEP a lot smaller and the UI output cleaner.
+    # See `//xcodeproj/internal:output_files.bzl` for more details.
+    toplevel_cache_buster = native.glob([
+        "{}.xcodeproj/rules_xcodeproj/toplevel_cache_buster".format(project),
+    ])
+
     xcodeproj_rule(
         testonly = testonly,
+        toplevel_cache_buster = toplevel_cache_buster,
         **kwargs
     )

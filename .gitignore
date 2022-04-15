@@ -4,6 +4,7 @@
 **/*.xcodeproj/project.xcworkspace/xcuserdata/*
 **/*.xcodeproj/rules_xcodeproj/bazel_build_targets
 **/*.xcodeproj/rules_xcodeproj/gen_dir
+**/*.xcodeproj/rules_xcodeproj/toplevel_cache_buster
 **/*.xcodeproj/*
 
 user.bazelrc
