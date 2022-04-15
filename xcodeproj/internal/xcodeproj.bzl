@@ -243,6 +243,7 @@ def _xcodeproj_impl(ctx):
             runfiles = ctx.runfiles(files = [xcodeproj]),
         ),
         OutputGroupInfo(
+            # TODO: Use output map for generated files as well
             generated_inputs = inputs.generated,
             **output_files.to_output_groups_fields(
                 ctx = ctx,

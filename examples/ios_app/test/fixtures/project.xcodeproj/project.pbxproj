@@ -575,6 +575,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12A6E39AFF20277EB2E837E3 /* Build configuration list for PBXNativeTarget "Utils" */;
 			buildPhases = (
+				53131848280A074A006B61B8 /* Copy Output */,
 				6C4A06DEA64ACEE83AA2D91B /* Sources */,
 			);
 			buildRules = (
@@ -821,6 +822,24 @@
 			shellScript = "cp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		53131848280A074A006B61B8 /* Copy Output */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Output";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_DIR/bazel-bin/test/fixtures/b __Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d3e756bfe7fd.filelist\" \\\n  --chmod=u+w \\\n  -L \\\n  -v \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
+		};
 		539F59CE2800C24400F5FBE2 /* Copy Output */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -828,19 +847,17 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "Copy Output";
 			outputFileListPaths = (
-				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.copied.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rsync \\\n  --copy-links \\\n  --recursive \\\n  --times \\\n  --delete \\\n  --chmod=u+w \\\n  -v \\\n  \"$PROJECT_DIR/bazel-out/applebin_ios-ios_sim_arm64-dbg-ST-eeab8ca40dab/bin/Example/Example.app\" \\\n  \"$TARGET_BUILD_DIR\"\n";
+			shellScript = "cd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_DIR/bazel-bin/test/fixtures/b __Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d3e756bfe7fd.filelist\" \\\n  --chmod=u+w \\\n  -L \\\n  -v \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n\nrsync \\\n  --copy-links \\\n  --recursive \\\n  --times \\\n  --delete \\\n  --chmod=u+w \\\n  -v \\\n  \"applebin_ios-ios_x86_64-dbg-ST-d3e756bfe7fd/bin/Example/Example.app\" \\\n  \"$TARGET_BUILD_DIR\"\n";
 			showEnvVarsInLog = 0;
 		};
 		64D3406EB908D4BD044C581E /* Copy Generated Files */ = {
@@ -849,19 +866,19 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"$(PROJECT_FILE_PATH)/rules_xcodeproj/infoplists.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "Copy Generated Files";
 			outputFileListPaths = (
-				"$(PROJECT_FILE_PATH)/rules_xcodeproj/infoplists.fixed.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.copied.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\ncd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_DIR/test/fixtures/project.xcodeproj/rules_xcodeproj/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n";
+			shellScript = "set -eu\n\ncd \"bazel-out\"\n\nrsync \\\n  --files-from \"$PROJECT_DIR/test/fixtures/project.xcodeproj/rules_xcodeproj/generated.rsynclist\" \\\n  --chmod=u+w \\\n  -L \\\n  -v \\\n  . \\\n  \"$BUILD_DIR/bazel-out\"\n\n";
 			showEnvVarsInLog = 0;
 		};
 		700DDA896776846733B25577 /* Fix Info.plists */ = {
@@ -876,7 +893,7 @@
 			);
 			name = "Fix Info.plists";
 			outputFileListPaths = (
-				"$(PROJECT_FILE_PATH)/rules_xcodeproj/generated.xcfilelist",
+				"$(PROJECT_FILE_PATH)/rules_xcodeproj/infoplists.fixed.xcfilelist",
 			);
 			outputPaths = (
 			);
@@ -901,7 +918,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\nset -x\n\nls -la\n\ncd \"$PROJECT_FILE_PATH/rules_xcodeproj\"\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf gen_dir\n\nln -sf \"$BUILD_DIR/bazel-out\" gen_dir\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-ios_app/external\" external\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf \"$PROJECT_DIR/bazel-out\"\n\ncd \"$PROJECT_DIR\"\n\nls -la\n\n# The pre-build scheme action isn't run while indexing, so we have to build everything\nif [ \"$ACTION\" == \"indexbuild\" ]; then\ncat <<EOF > \"$PROJECT_FILE_PATH/rules_xcodeproj/bazel_build_targets\"\n//test/fixtures:fixture\n//Example\n//ExampleObjcTests\n//ExampleTests\n//ExampleUITests\nEOF\nfi\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  ${BAZEL_PATH} \\\n  build \\\n  --config=cache \\\n  --output_groups=+generated_inputs \\\n  -c dbg \\\n  --define=apple.experimental.tree_artifact_outputs=1 \\\n  --features=oso_prefix_is_pwd \\\n  --target_pattern_file=\"$PROJECT_FILE_PATH/rules_xcodeproj/bazel_build_targets\"\n  \nls -la\n";
+			shellScript = "set -eu\n\ncd \"$PROJECT_FILE_PATH/rules_xcodeproj\"\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf gen_dir\n\nln -sf \"$BUILD_DIR/bazel-out\" gen_dir\n\ncd \"$BUILD_DIR\"\nln -sfn \"$PROJECT_DIR\" SRCROOT\nln -sfn \"$PROJECT_DIR/bazel-ios_app/external\" external\n\n# Need to remove the directory that Xcode creates as part of output prep\nrm -rf \"$PROJECT_DIR/bazel-out\"\n\ncd \"$PROJECT_DIR\"\n\nflags=(\n  --config=cache\n  --output_groups=+generated_inputs\n  -c dbg\n  --define=apple.experimental.tree_artifact_outputs=1\n  --features=oso_prefix_is_pwd\n  --bes_upload_mode=fully_async\n)\n\nwhile IFS= read -r output_group; do\n  flags+=(\"--output_groups=+$output_group\")\ndone < \"$PROJECT_FILE_PATH/rules_xcodeproj/bazel_build_output_groups\"\n\ntime env -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  ${BAZEL_PATH} \\\n  build \\\n  \"${flags[@]}\" \\\n  //test/fixtures:fixture\n";
 		};
 		C977250D6EB972BF2FF38593 /* Fix Modulemaps */ = {
 			isa = PBXShellScriptBuildPhase;

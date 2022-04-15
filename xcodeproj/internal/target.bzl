@@ -330,7 +330,7 @@ def _process_top_level_properties(
         minimum_deployment_version = bundle_info.minimum_deployment_os_version
 
         if tree_artifact_enabled:
-            bundle_path = parsed_file_path(bundle_info.archive.path)
+            bundle_path = file_path(bundle_info.archive)
         else:
             bundle_extension = bundle_info.bundle_extension
             bundle = "{}{}".format(bundle_info.bundle_name, bundle_extension)
@@ -495,6 +495,7 @@ def _process_top_level_target(*, ctx, target, bundle_info, transitive_infos):
         transitive_infos = transitive_infos,
     )
     outputs = output_files.collect(
+        bundle_info = bundle_info,
         swift_info = swift_info,
         id = id,
         transitive_infos = transitive_infos,
@@ -777,6 +778,7 @@ def _process_library_target(*, ctx, target, transitive_infos):
         transitive_infos = transitive_infos,
     )
     outputs = output_files.collect(
+        bundle_info = None,
         swift_info = swift_info,
         id = id,
         transitive_infos = transitive_infos,
@@ -917,6 +919,7 @@ def _process_resource_target(*, ctx, target, transitive_infos):
         transitive_infos = transitive_infos,
     )
     outputs = output_files.collect(
+        bundle_info = None,
         swift_info = None,
         id = id,
         transitive_infos = transitive_infos,

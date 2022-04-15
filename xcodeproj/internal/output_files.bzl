@@ -2,9 +2,12 @@
 
 # Utility
 
-def _get_outputs(*, swift_info):
+def _get_outputs(*, bundle_info, swift_info):
     build_outputs = []
     index_outputs = []
+
+    if bundle_info:
+        build_outputs.append(bundle_info.archive)
 
     if swift_info:
         for module in swift_info.direct_modules:
@@ -182,13 +185,15 @@ cat $@ > "$output"
 
 def _collect(
         *,
+        bundle_info,
         swift_info,
         id,
         transitive_infos):
     """Collects the outputs of a target.
 
     Args:
-        swift_info: The `SwiftInfo` provider for the target.
+        bundle_info: The `AppleBundleInfo` provider for `target`, or `None`.
+        swift_info: The `SwiftInfo` provider for the target, or `None`.
         id: A unique identifier for the target.
         transitive_infos: A list of `XcodeProjInfo`s for the transitive
             dependencies of the target.
@@ -198,6 +203,7 @@ def _collect(
         `output_files.to_output_groups_fields` or `output_files.merge()`.
     """
     direct_build_outputs, direct_index_outputs = _get_outputs(
+        bundle_info = bundle_info,
         swift_info = swift_info,
     )
 

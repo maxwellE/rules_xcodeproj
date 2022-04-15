@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cat &lt;&lt;EOF &gt; &quot;$PROJECT_FILE_PATH/rules_xcodeproj/bazel_build_targets&quot;&#10;//test/fixtures:fixture&#10;//Example&#10;EOF&#10;"
+               scriptText = "cat &lt;&lt;EOF &gt; &quot;$PROJECT_FILE_PATH/rules_xcodeproj/bazel_build_output_groups&quot;&#10;b __Example:Example.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-d3e756bfe7fd&#10;b __Example:Example applebin_ios-ios_x86_64-dbg-ST-d3e756bfe7fd&#10;EOF&#10;"
                shellToInvoke = "/bin/bash">
                <EnvironmentBuildable>
                   <BuildableReference
