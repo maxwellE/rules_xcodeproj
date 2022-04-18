@@ -487,7 +487,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  build \\\n  --output_groups=generated_inputs \\\n  //test/fixtures/command_line:xcodeproj_bwx\n";
+			shellScript = "set -eu\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  ${output_base:+--experimental_convenience_symlinks=ignore} \\\n  --output_groups=generated_inputs \\\n  //test/fixtures/command_line:xcodeproj_bwx\n";
 			showEnvVarsInLog = 0;
 		};
 		588A3D0F8C7F3BC89386E0B0 /* Copy Files */ = {

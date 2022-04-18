@@ -262,8 +262,14 @@ done
             shellScript: #"""
 set -eu
 
+if [ "$ACTION" == "indexbuild" ]; then
+  output_base="$OBJROOT/bazel_output_base"
+fi
+
 \#(bazelExec) \
+  ${output_base:+--output_base "$output_base"} \
   build \
+  ${output_base:+--experimental_convenience_symlinks=ignore} \
   --output_groups=generated_inputs \
   \#(xcodeprojBazelLabel)
 

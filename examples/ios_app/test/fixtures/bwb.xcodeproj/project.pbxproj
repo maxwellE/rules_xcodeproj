@@ -1075,7 +1075,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  build \\\n  --output_groups=generated_inputs \\\n  //test/fixtures:fixture_bwb\n";
+			shellScript = "set -eu\n\nif [ \"$ACTION\" == \"indexbuild\" ]; then\n  output_base=\"$OBJROOT/bazel_output_base\"\nfi\n\nenv -i \\\n  DEVELOPER_DIR=\"$DEVELOPER_DIR\" \\\n  HOME=\"$HOME\" \\\n  PATH=\"${PATH//\\/usr\\/local\\/bin//opt/homebrew/bin:/usr/local/bin}\" \\\n  USER=\"$USER\" \\\n  \"$BAZEL_PATH\" \\\n  ${output_base:+--output_base \"$output_base\"} \\\n  build \\\n  ${output_base:+--experimental_convenience_symlinks=ignore} \\\n  --output_groups=generated_inputs \\\n  //test/fixtures:fixture_bwb\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
