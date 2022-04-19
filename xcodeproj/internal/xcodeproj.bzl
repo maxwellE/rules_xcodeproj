@@ -202,7 +202,11 @@ def _xcodeproj_impl(ctx):
             runfiles = ctx.runfiles(files = [xcodeproj]),
         ),
         OutputGroupInfo(
-            generated_inputs = inputs.generated,
+            **input_files.to_output_groups_fields(
+                ctx = ctx,
+                inputs = inputs,
+                toplevel_cache_buster = ctx.files.toplevel_cache_buster,
+            )
         ),
         XcodeProjOutputInfo(
             installer = installer,
@@ -227,6 +231,10 @@ def make_xcodeproj_rule(*, transition = None):
             mandatory = True,
             allow_empty = False,
             aspects = [xcodeproj_aspect],
+        ),
+        "toplevel_cache_buster": attr.label_list(
+            allow_empty = True,
+            allow_files = True,
         ),
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
@@ -272,7 +280,21 @@ _xcodeproj = make_xcodeproj_rule()
 def xcodeproj(*, xcodeproj_rule = _xcodeproj, **kwargs):
     testonly = kwargs.pop("testonly", True)
 
+    project = kwargs.get("project_name", kwargs.get("name"))
+
+    if kwargs.get("toplevel_cache_buster"):
+        fail("`toplevel_cache_buster` is for internal use only")
+
+    # We control an input file to force downloading of top-level outputs,
+    # without having them be declared as the exact top level outputs. This makes
+    # the BEP a lot smaller and the UI output cleaner.
+    # See `//xcodeproj/internal:output_files.bzl` for more details.
+    toplevel_cache_buster = native.glob([
+        "{}.xcodeproj/rules_xcodeproj/toplevel_cache_buster".format(project),
+    ])
+
     xcodeproj_rule(
         testonly = testonly,
+        toplevel_cache_buster = toplevel_cache_buster,
         **kwargs
     )
