@@ -106,13 +106,15 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                     uniqueFiles
                         .map { Path(FilePathResolver.resolve($0)) }
                         .compactMap({ path in
-                            guard let pathExtension: String = path.extension
+                            let binPrefixComponents: [String] = path.components.prefix(while: { component in
+                                component != "bin"
+                            })
+                            guard !binPrefixComponents.isEmpty,
+                                let pathExtension: String = path.extension
                             else {
                                 return nil
                             }
-                            let wildcardPath = Path(components: path.components.prefix(while: { component in
-                                component != "bin"
-                            })) + "bin" + "**" + "*.\(pathExtension)"
+                            let wildcardPath = Path(components: binPrefixComponents) + "bin" + "**" + "*.\(pathExtension)"
                             return "'\(wildcardPath.string)'"
                         })
                 )
