@@ -102,8 +102,21 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 let key = """
 \(target.platform.variant.rawValue.uppercased())_FILES
 """
-                conditionalFileNames[key] = uniqueFiles
-                    .map { FilePathResolver.resolve($0).quoted }
+                let filesGroupedByRoot: Set<String> = .init(
+                    uniqueFiles
+                        .map { Path(FilePathResolver.resolve($0)) }
+                        .compactMap({ path in
+                            guard let pathExtension: String = path.extension
+                            else {
+                                return nil
+                            }
+                            let wildcardPath = Path(components: path.components.prefix(while: { component in
+                                component != "bin"
+                            })) + "bin" + "**" + "*.\(pathExtension)"
+                            return "'\(wildcardPath.string)'"
+                        })
+                )
+                conditionalFileNames[key] = filesGroupedByRoot
                     .sorted()
                     .joined(separator: " ")
                 targetBuildSettings.set(
@@ -275,7 +288,7 @@ $(CONFIGURATION_BUILD_DIR)
                 to: FilePathResolver.resolve(pch)
             )
         }
-        
+
         // Set VFS overlays
 
         if hasBazelDependencies {
