@@ -199,6 +199,7 @@ swift_library(
     ],
     features = [
         "swift.experimental.AccessLevelOnImport",
+        "swift.experimental.InternalImportsByDefault",
     ],
     module_name = "SwiftBuild",
     tags = ["manual"],
