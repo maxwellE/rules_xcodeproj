@@ -114,6 +114,7 @@ echo "Starting Bazel build"
   ${build_pre_config_flags:+"${build_pre_config_flags[@]}"} \
   --config="$config" \
   --color=yes \
+  --build_event_binary_file="$SWIFT_BUILD_BEP_PATH" \
   ${toolchain:+--action_env=TOOLCHAINS="$toolchain"} \
   "$output_groups_flag" \
   "%generator_label%" \

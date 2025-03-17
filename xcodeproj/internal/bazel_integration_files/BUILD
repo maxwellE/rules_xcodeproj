@@ -5,6 +5,7 @@ _BASE_FILES = [
     "generate_bazel_dependencies.sh",
     ":renamed_import_indexstores",
     "process_bazel_build_log.py",
+    "proxy_build.sh",
 ]
 
 filegroup(
