@@ -48,14 +48,19 @@ else
   # We need to read from `$output_groups_file` as soon as possible, as concurrent
   # writes to it can happen during indexing, which breaks the off-by-one-by-design
   # nature of it
-  IFS=$'\n' read -r -d '' -a labels_and_output_groups < \
-    <( "$CALCULATE_OUTPUT_GROUPS_SCRIPT" \
+  if [ -f "${OUTPUT_GROUPS_FILE:-}" ]; then
+    IFS=$'\n' read -r -d '' -a labels_and_output_groups < \
+      <( cat "$OUTPUT_GROUPS_FILE" && printf '\0' )
+  else
+    IFS=$'\n' read -r -d '' -a labels_and_output_groups < \
+      <( "$CALCULATE_OUTPUT_GROUPS_SCRIPT" \
         "$XCODE_VERSION_ACTUAL" \
         "$non_preview_objroot" \
         "$base_objroot" \
         "$build_marker_file" \
         $output_group_prefixes \
         && printf '\0' )
+  fi
 
   readonly outputgroup_regex='[^\ ]+ @{0,2}(.*)//(.*):(.*) ([^\ ]+)$'
 

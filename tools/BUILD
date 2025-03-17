@@ -3,6 +3,12 @@ load("//xcodeproj:defs.bzl", "xcodeproj", "xcschemes")
 # buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
 
+alias(
+    name = "SWBBuildServiceBundle",
+    actual = "@swiftpkg_swift_build//:SWBBuildServiceBundle",
+    visibility = ["//visibility:public"],
+)
+
 _TOOLS = {
     "files_and_groups": "//tools/generators/files_and_groups",
     "import_indexstores": "//tools/import_indexstores",

@@ -94,6 +94,16 @@ readonly base_pre_config_flags=(
   "--bes_upload_mode=NOWAIT_FOR_UPLOAD_COMPLETE"
 )
 
+build_post_config_flags=(
+  "--color=yes"
+)
+
+if [ -f "${SWIFT_BUILD_BEP_PATH:-}" ]; then
+  build_post_config_flags+=(
+    "--build_event_binary_file=$SWIFT_BUILD_BEP_PATH"
+  )
+fi
+
 # Custom Swift toolchains
 
 if [[ -n "${TOOLCHAINS-}" ]]; then
@@ -115,6 +125,8 @@ echo "Starting Bazel build"
   --config="$config" \
   --color=yes \
   ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
+  "${build_post_config_flags[@]}" \
+  ${toolchain:+--action_env=TOOLCHAINS="$toolchain"} \
   "$output_groups_flag" \
   "%generator_label%" \
   ${labels:+"--build_metadata=PATTERN=${labels[*]}"} \

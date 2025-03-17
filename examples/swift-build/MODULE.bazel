@@ -1,0 +1,22 @@
+bazel_dep(
+    name = "rules_xcodeproj",
+    # Set to the real version with `--override_module`
+    version = "0.0.0",
+)
+
+bazel_dep(name = "rules_swift_package_manager", version = "0.45.0")
+
+swift_deps = use_extension(
+    "@rules_swift_package_manager//:extensions.bzl",
+    "swift_deps",
+)
+swift_deps.from_package(
+    declare_swift_deps_info = False,
+    resolved = "//:Package.resolved",
+    swift = "//:Package.swift",
+)
+use_repo(
+    swift_deps,
+    "swift_package",
+    "swiftpkg_swift_build",
+)
