@@ -4,6 +4,12 @@ set -euo pipefail
 
 "$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh"
 
-"$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \
+if [[ "$ACTION" == "indexbuild" ]]; then
+  cd "$SRCROOT"
+
+  "$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh"
+else
+  "$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \
     "_BazelForcedCompile_.swift" \
     "$BAZEL_INTEGRATION_DIR/app.exclude.rsynclist"
+fi
