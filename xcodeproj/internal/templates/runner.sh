@@ -192,10 +192,6 @@ for var in "${allowed_vars[@]}"; do
   fi
 done
 
-if [[ "%build_mode%" == "proxy" ]]; then
-  passthrough_env+=("XCBBUILDSERVICE_PATH=%swbservice_bundle%")
-fi
-
 bazel_cmd=(
   env -i
   "DEVELOPER_DIR=$developer_dir"

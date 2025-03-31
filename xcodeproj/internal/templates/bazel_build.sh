@@ -98,7 +98,7 @@ build_post_config_flags=(
   "--color=yes"
 )
 
-if [ -f "$SWIFT_BUILD_BEP_PATH" ]; then
+if [ -f "${SWIFT_BUILD_BEP_PATH:-}" ]; then
   build_post_config_flags+=(
     "--build_event_binary_file=$SWIFT_BUILD_BEP_PATH"
   )

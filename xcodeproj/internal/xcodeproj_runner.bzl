@@ -507,7 +507,6 @@ def _xcodeproj_runner_impl(ctx):
         template = ctx.file._runner_template,
         xcode_version = xcode_version,
         xcodeproj_bazelrc = xcodeproj_bazelrc,
-        swbservice_bundle = ctx.file._swbservice_bundle.short_path,
     )
 
     return [
@@ -638,10 +637,6 @@ xcodeproj_runner = rule(
                 name = "xcode_config_label",
                 fragment = "apple",
             ),
-        ),
-        "_swbservice_bundle": attr.label(
-            default = Label("@swiftpkg_swift_build//:SWBBuildServiceBundle"),
-            allow_single_file = True,
         ),
     },
     executable = True,
