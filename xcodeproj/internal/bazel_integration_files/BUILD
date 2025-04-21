@@ -15,18 +15,9 @@ filegroup(
     visibility = ["//visibility:public"],
 )
 
-genrule(
-    name = "renamed_swbservicebundle",
-    srcs = ["@swiftpkg_swift_build//:SWBBuildServiceBundle"],
-    outs = ["SWBBuildServiceBundle"],
-    cmd = "cp $< $@",
-    tags = ["manual"],
-)
-
 filegroup(
     name = "bwb_integration_files",
     srcs = _BASE_FILES + [
-        ":renamed_swbservicebundle",
         ":renamed_swiftc_stub",
         ":rsync_excludes",
     ] + glob(

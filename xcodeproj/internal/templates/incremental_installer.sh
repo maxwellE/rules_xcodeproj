@@ -187,10 +187,10 @@ fi
 
 echo 'Updated project at "%output_path%"'
 
-readonly xcbuildservice_path="$dest/rules_xcodeproj/bazel/SWBBuildServiceBundle"
+# readonly xcbuildservice_path="$dest/rules_xcodeproj/bazel/SWBBuildServiceBundle"
 
-if [[ -f "$xcbuildservice_path" ]]; then
-  chmod a+x "$xcbuildservice_path"
-  echo "Select your desired project from the opened Xcode window"
-  /usr/bin/open -n -F -W --env "XCBBUILDSERVICE_PATH=$xcbuildservice_path" -b com.apple.dt.Xcode
-fi
+# if [[ -f "$xcbuildservice_path" ]]; then
+#   chmod a+x "$xcbuildservice_path"
+#   echo "Select your desired project from the opened Xcode window"
+#   /usr/bin/open -n -F -W --env "XCBBUILDSERVICE_PATH=$xcbuildservice_path" -b com.apple.dt.Xcode
+# fi
