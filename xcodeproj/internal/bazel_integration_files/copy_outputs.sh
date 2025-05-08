@@ -20,6 +20,8 @@ readonly test_frameworks=(
   "XCUnit.framework"
 )
 
+printenv > /tmp/copy_outputs_bwp.env
+
 if [[ "$ACTION" != indexbuild ]]; then
   # Copy product
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then

@@ -120,6 +120,22 @@ extension Generator {
                 key: "INTERNAL_DIR",
                 value: #""$(PROJECT_FILE_PATH)/rules_xcodeproj""#
             ),
+            .init(
+                key: "OBJROOT",
+                value: "/Users/maxwellelliott/Library/Developer/Xcode/DerivedData/Tinder-GeneratedProject-emloloxmdcseqbdmmscttvhxwdmx/Build/Intermediates.noindex"
+            ),
+            .init(
+                key: "BUILD_ROOT",
+                value: "/Users/maxwellelliott/Library/Developer/Xcode/DerivedData/Tinder-GeneratedProject-emloloxmdcseqbdmmscttvhxwdmx/Build/Products"
+            ),
+            .init(
+                key: "BUILD_DIR",
+                value: #""/Users/maxwellelliott/Library/Developer/Xcode/DerivedData/Tinder-GeneratedProject-emloloxmdcseqbdmmscttvhxwdmx/Build/Products/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)""#
+            ),
+            .init(
+                key: "TARGET_BUILD_DIR",
+                value: #""$(BUILD_DIR)/rules_xcodeproj""#
+            ),
             .init(key: "LD_DYLIB_INSTALL_NAME", value: #""""#),
             .init(key: "LD_OBJC_ABI_VERSION", value: #""""#),
             .init(key: "LD_RUNPATH_SEARCH_PATHS", value: #""""#),
